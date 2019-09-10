@@ -76,6 +76,11 @@ view: trip {
     sql: ${TABLE}.trip_duration ;;
   }
 
+  dimension: trip_duration_float {
+    type: number
+    sql: CAST(${TABLE}.trip_duration AS float) ;;
+  }
+
   dimension: usertype {
     type: string
     sql: ${TABLE}.usertype ;;
@@ -88,6 +93,6 @@ view: trip {
 
   measure: total_time {
     type: sum
-    sql: round(sum(${trip_duration}), 2) ;;
+    sql: round(sum(${trip_duration_float}), 2) ;;
   }
 }
